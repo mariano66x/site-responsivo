@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <!-- ===================================================
+       METADADOS
+       Configurações básicas, responsividade (mobile first)
+       e informações para buscadores/redes sociais.
+       =================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Ecos de Aurora: atravesse ilhas flutuantes, recupere os fragmentos de luz e devolva o amanhecer a um mundo esquecido.">
+  <meta name="theme-color" content="#0B0F2A">
+  <title>Ecos de Aurora | Aventura em mundo aberto</title>
+
+  <!-- Aplica o tema salvo (claro/escuro) ANTES de a página aparecer,
+       evitando que a tela "pisque" no tema errado ao recarregar.
+       Também marca o <html> com a classe "js" (JavaScript ativo). -->
+  <script>
+    (function () {
+      var raiz = document.documentElement;
+      raiz.classList.add('js');
+      try {
+        var tema = localStorage.getItem('ecos-tema');
+        if (tema === 'light' || tema === 'dark') raiz.setAttribute('data-theme', tema);
+      } catch (e) { /* navegação privada: segue no tema padrão */ }
+    })();
+  </script>
+
+  <!-- Fontes (Google Fonts): Cinzel para títulos, Poppins para textos.
+       preconnect acelera o carregamento no celular. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Link de acessibilidade: permite pular direto ao conteúdo -->
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===================================================
+       1. CABEÇALHO
+       Logo em texto estilizado, menu de navegação por âncoras
+       e ações: alternar tema (claro/escuro) e menu hambúrguer
+       (este último só aparece no celular e tablet).
+       =================================================== -->
+  <header class="site-header" id="topo">
+    <div class="container header-inner">
+      <a href="#inicio" class="logo" aria-label="Ecos de Aurora - voltar ao início">
+        <span class="logo-ecos">Ecos</span> <span class="logo-de">de</span> <span class="logo-aurora">Aurora</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Menu principal">
+        <ul id="menu-principal" class="nav-list">
+          <li><a href="#inicio" class="nav-link">Início</a></li>
+          <li><a href="#sobre" class="nav-link">Sobre</a></li>
+          <li><a href="#personagens" class="nav-link">Personagens</a></li>
+          <li><a href="#mapa" class="nav-link">Mapa</a></li>
+          <li><a href="#galeria" class="nav-link">Galeria</a></li>
+          <li><a href="#noticias" class="nav-link">Notícias</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Alternância de tema: mostra o sol no modo escuro e a lua no modo claro -->
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Ativar modo claro" title="Ativar modo claro">
+          <svg class="icone icone-sol" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+          </svg>
+          <svg class="icone icone-lua" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+          </svg>
+        </button>
+
+        <!-- Botão hambúrguer (celular/tablet) -->
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ===================================================
+         2. HERO
+         Primeira impressão: título, frase de impacto e
+         chamada principal para ação (CTA) "Jogue Agora".
+         =================================================== -->
+    <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+      <div class="container hero-content">
+        <p class="hero-tag">Aventura • Exploração • Mundo aberto</p>
+        <h1 id="hero-titulo" class="hero-title">Ecos de Aurora</h1>
+        <p class="hero-subtitle">O céu se partiu. A luz se espalhou. Só você pode reunir o amanhecer.</p>
+        <div class="hero-actions">
+          <a href="#contato" class="btn btn-primary" id="btn-jogar">Jogue Agora</a>
+          <a href="#sobre" class="btn btn-secondary">Conheça a história</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         3. SOBRE O JOGO
+         História, gênero, plataformas e data de lançamento.
+         As informações técnicas ficam em uma lista de
+         definições (<dl>), semanticamente adequada.
+         =================================================== -->
+    <section class="section" id="sobre" aria-labelledby="sobre-titulo">
+      <div class="container">
+        <h2 id="sobre-titulo" class="section-title">Sobre o Jogo</h2>
+
+        <div class="sobre-grid">
+          <!-- Texto da história -->
+          <article class="sobre-historia">
+            <h3>A história</h3>
+            <p>
+              Há mil anos, o arquipélago de Aurora flutuava em harmonia sob a luz do Grande Farol.
+              Até que, numa noite sem estrelas, o Farol se estilhaçou e seus fragmentos de luz
+              se espalharam pelas ilhas, deixando o mundo mergulhado em um crepúsculo eterno.
+            </p>
+            <p>
+              Você desperta como um <strong>Portador de Ecos</strong>, alguém capaz de ouvir a memória
+              guardada em cada fragmento. Planando entre ilhas, escalando ruínas e enfrentando as
+              Sombras que se alimentam da escuridão, sua missão é reunir a luz perdida e descobrir
+              quem — ou o quê — destruiu o Farol.
+            </p>
+          </article>
+
+          <!-- Ficha técnica -->
+          <aside class="sobre-ficha" aria-label="Ficha técnica do jogo">
+            <h3>Ficha técnica</h3>
+            <dl class="ficha-lista">
+              <div class="ficha-item">
+                <dt>Gênero</dt>
+                <dd>Aventura e exploração em mundo aberto</dd>
+              </div>
+              <div class="ficha-item">
+                <dt>Plataformas</dt>
+                <dd>PC, PlayStation 5, Xbox Series X|S, Nintendo Switch, Android e iOS</dd>
+              </div>
+              <div class="ficha-item">
+                <dt>Lançamento</dt>
+                <dd><time datetime="2027-03-18">18 de março de 2027</time></dd>
+              </div>
+              <div class="ficha-item">
+                <dt>Modos</dt>
+                <dd>Single player com cooperativo online (até 3 jogadores)</dd>
+              </div>
+              <div class="ficha-item">
+                <dt>Classificação</dt>
+                <dd>12 anos</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         4. PERSONAGENS
+         Botões de filtro + cards. Cada card tem o atributo
+         data-classe (guerreiro, mago ou explorador), usado
+         pelo script.js para mostrar só a classe escolhida.
+         =================================================== -->
+    <section class="section section-alt" id="personagens" aria-labelledby="personagens-titulo">
+      <div class="container">
+        <h2 id="personagens-titulo" class="section-title">Personagens</h2>
+        <p class="section-intro">Escolha seu Portador de Ecos. Cada um enxerga a luz de um jeito diferente.</p>
+
+        <!-- Filtros por classe (aria-pressed indica o filtro ativo) -->
+        <div class="filtros" role="group" aria-label="Filtrar personagens por classe">
+          <button type="button" class="filtro-btn" data-filtro="todos" aria-pressed="true">Todos</button>
+          <button type="button" class="filtro-btn" data-filtro="guerreiro" aria-pressed="false">Guerreiro</button>
+          <button type="button" class="filtro-btn" data-filtro="mago" aria-pressed="false">Mago</button>
+          <button type="button" class="filtro-btn" data-filtro="explorador" aria-pressed="false">Explorador</button>
+        </div>
+        <!-- Resumo do filtro, anunciado por leitores de tela -->
+        <p class="filtro-status" id="filtro-status" role="status" aria-live="polite">Mostrando todos os 6 personagens.</p>
+
+        <div class="cards-grid personagens-grid">
+          <!-- Personagem 1 — Explorador -->
+          <article class="card personagem-card" data-classe="explorador">
+            <img class="personagem-img" src="https://placehold.co/400x300/1A1F4B/FFC857?text=Lyra" alt="Ilustração provisória da personagem Lyra" loading="lazy" width="400" height="300">
+            <div class="card-body">
+              <h3 class="card-title">Lyra</h3>
+              <p class="personagem-classe">Exploradora · Planadora</p>
+              <p>Cartógrafa curiosa que cresceu nas bordas das ilhas mais altas. Conhece cada corrente de vento do arquipélago.</p>
+              <p class="personagem-habilidade"><strong>Habilidade principal:</strong> Voo Prismático — plana por longas distâncias deixando um rastro de luz que revela caminhos ocultos.</p>
+            </div>
+          </article>
+
+          <!-- Personagem 2 — Guerreiro -->
+          <article class="card personagem-card" data-classe="guerreiro">
+            <img class="personagem-img" src="https://placehold.co/400x300/1A1F4B/FFC857?text=Kael" alt="Ilustração provisória do personagem Kael" loading="lazy" width="400" height="300">
+            <div class="card-body">
+              <h3 class="card-title">Kael</h3>
+              <p class="personagem-classe">Guerreiro · Guardião</p>
+              <p>Ex-sentinela do Grande Farol, carrega a culpa de não ter impedido sua queda. Forte, leal e de poucas palavras.</p>
+              <p class="personagem-habilidade"><strong>Habilidade principal:</strong> Escudo do Alvorecer — cria uma barreira de luz que protege aliados e repele Sombras.</p>
+            </div>
+          </article>
+
+          <!-- Personagem 3 — Guerreiro -->
+          <article class="card personagem-card" data-classe="guerreiro">
+            <img class="personagem-img" src="https://placehold.co/400x300/1A1F4B/FFC857?text=Nyx" alt="Ilustração provisória da personagem Nyx" loading="lazy" width="400" height="300">
+            <div class="card-body">
+              <h3 class="card-title">Nyx</h3>
+              <p class="personagem-classe">Guerreira · Andarilha das Sombras</p>
+              <p>Misteriosa e irônica, Nyx nasceu no crepúsculo e é a única capaz de caminhar entre as Sombras sem ser consumida.</p>
+              <p class="personagem-habilidade"><strong>Habilidade principal:</strong> Passo Eclipse — torna-se invisível por alguns segundos e atravessa barreiras de escuridão.</p>
+            </div>
+          </article>
+
+          <!-- Personagem 4 — Explorador -->
+          <article class="card personagem-card" data-classe="explorador">
+            <img class="personagem-img" src="https://placehold.co/400x300/1A1F4B/FFC857?text=Bento" alt="Ilustração provisória do personagem Bento" loading="lazy" width="400" height="300">
+            <div class="card-body">
+              <h3 class="card-title">Bento</h3>
+              <p class="personagem-classe">Explorador · Engenhoqueiro</p>
+              <p>Inventor bem-humorado que transforma sucata de ilhas caídas em máquinas voadoras e armadilhas criativas.</p>
+              <p class="personagem-habilidade"><strong>Habilidade principal:</strong> Ponte Instantânea — constrói pontes e plataformas temporárias entre ilhas próximas.</p>
+            </div>
+          </article>
+
+          <!-- Personagem 5 — Mago -->
+          <article class="card personagem-card" data-classe="mago">
+            <img class="personagem-img" src="https://placehold.co/400x300/1A1F4B/FFC857?text=Sol%C3%A1" alt="Ilustração provisória da personagem Solá" loading="lazy" width="400" height="300">
+            <div class="card-body">
+              <h3 class="card-title">Solá</h3>
+              <p class="personagem-classe">Maga · Ecoante</p>
+              <p>Musicista e curandeira, ouve as memórias dos fragmentos com mais clareza do que qualquer outro Portador.</p>
+              <p class="personagem-habilidade"><strong>Habilidade principal:</strong> Canção Restauradora — cura aliados e desperta fragmentos de luz adormecidos.</p>
+            </div>
+          </article>
+
+          <!-- Personagem 6 — Mago -->
+          <article class="card personagem-card" data-classe="mago">
+            <img class="personagem-img" src="https://placehold.co/400x300/1A1F4B/FFC857?text=Orin" alt="Ilustração provisória do personagem Orin" loading="lazy" width="400" height="300">
+            <div class="card-body">
+              <h3 class="card-title">Orin</h3>
+              <p class="personagem-classe">Mago · Arcanista Estelar</p>
+              <p>Velho astrônomo que lê o futuro nas constelações apagadas. Guarda segredos sobre a noite em que o Farol caiu.</p>
+              <p class="personagem-habilidade"><strong>Habilidade principal:</strong> Chuva de Estrelas — invoca fragmentos de luz estelar que atingem várias Sombras ao mesmo tempo.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         5. MAPA / REGIÕES
+         Lista ordenada das regiões (ordem sugerida de
+         exploração), com nome, descrição e nível de desafio.
+         =================================================== -->
+    <section class="section" id="mapa" aria-labelledby="mapa-titulo">
+      <div class="container">
+        <h2 id="mapa-titulo" class="section-title">Mapa e Regiões</h2>
+        <p class="section-intro">Sete ilhas, sete fragmentos. Cada região guarda um eco do passado.</p>
+
+        <ol class="regioes-lista">
+          <li class="regiao">
+            <h3 class="regiao-nome">Vale do Primeiro Raio</h3>
+            <p>Campos dourados e ventos suaves onde a jornada começa. Ideal para aprender a planar e escalar.</p>
+            <p class="regiao-nivel">Desafio: Iniciante</p>
+          </li>
+          <li class="regiao">
+            <h3 class="regiao-nome">Bosque Suspenso de Lúmen</h3>
+            <p>Uma floresta de árvores com raízes pendendo no vazio, iluminada por vagalumes cristalinos.</p>
+            <p class="regiao-nivel">Desafio: Fácil</p>
+          </li>
+          <li class="regiao">
+            <h3 class="regiao-nome">Cascatas do Céu Partido</h3>
+            <p>Rios que despencam das ilhas e se transformam em nuvens. Esconde templos submersos em névoa.</p>
+            <p class="regiao-nivel">Desafio: Médio</p>
+          </li>
+          <li class="regiao">
+            <h3 class="regiao-nome">Cidadela de Bronze</h3>
+            <p>Antiga capital mecânica, hoje repleta de engrenagens enferrujadas e enigmas de engenharia.</p>
+            <p class="regiao-nivel">Desafio: Médio</p>
+          </li>
+          <li class="regiao">
+            <h3 class="regiao-nome">Desertos de Vidro</h3>
+            <p>Dunas de areia cristalizada que refletem a luz — e as Sombras. Tempestades mudam o mapa a cada visita.</p>
+            <p class="regiao-nivel">Desafio: Difícil</p>
+          </li>
+          <li class="regiao">
+            <h3 class="regiao-nome">Arquipélago Congelado de Véu</h3>
+            <p>Ilhas presas em gelo eterno, onde o tempo parece andar mais devagar e ecos antigos ganham voz.</p>
+            <p class="regiao-nivel">Desafio: Difícil</p>
+          </li>
+          <li class="regiao">
+            <h3 class="regiao-nome">Ruínas do Grande Farol</h3>
+            <p>O coração do mundo e o lugar onde tudo terminou. Apenas quem reunir os outros fragmentos poderá entrar.</p>
+            <p class="regiao-nivel">Desafio: Lendário</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         6. GALERIA
+         Grade de imagens provisórias (placeholders).
+         Cada imagem abre no lightbox (modal) via script.js,
+         com navegação anterior/próximo, deslize no celular
+         e fechamento pelo botão, pela tecla Esc ou tocando
+         fora da imagem.
+         =================================================== -->
+    <section class="section section-alt" id="galeria" aria-labelledby="galeria-titulo">
+      <div class="container">
+        <h2 id="galeria-titulo" class="section-title">Galeria</h2>
+        <p class="section-intro">Toque em uma imagem para ampliar. No celular, deslize para os lados para navegar.</p>
+
+        <div class="galeria-grid">
+          <figure class="galeria-item">
+            <img src="https://placehold.co/900x600/1A1F4B/FFC857?text=Vale+do+Primeiro+Raio" alt="Paisagem do Vale do Primeiro Raio" loading="lazy" width="900" height="600">
+            <figcaption>Vale do Primeiro Raio</figcaption>
+          </figure>
+          <figure class="galeria-item">
+            <img src="https://placehold.co/900x600/1A1F4B/6EE7F9?text=Bosque+de+L%C3%BAmen" alt="Bosque Suspenso de Lúmen à noite" loading="lazy" width="900" height="600">
+            <figcaption>Bosque Suspenso de Lúmen</figcaption>
+          </figure>
+          <figure class="galeria-item">
+            <img src="https://placehold.co/900x600/1A1F4B/FFC857?text=Cascatas" alt="Cascatas do Céu Partido caindo entre ilhas" loading="lazy" width="900" height="600">
+            <figcaption>Cascatas do Céu Partido</figcaption>
+          </figure>
+          <figure class="galeria-item">
+            <img src="https://placehold.co/900x600/1A1F4B/6EE7F9?text=Cidadela+de+Bronze" alt="Engrenagens gigantes da Cidadela de Bronze" loading="lazy" width="900" height="600">
+            <figcaption>Cidadela de Bronze</figcaption>
+          </figure>
+          <figure class="galeria-item">
+            <img src="https://placehold.co/900x600/1A1F4B/FFC857?text=Combate+com+Sombras" alt="Personagens enfrentando uma Sombra" loading="lazy" width="900" height="600">
+            <figcaption>Combate contra as Sombras</figcaption>
+          </figure>
+          <figure class="galeria-item">
+            <img src="https://placehold.co/900x600/1A1F4B/6EE7F9?text=Grande+Farol" alt="Ruínas do Grande Farol ao entardecer" loading="lazy" width="900" height="600">
+            <figcaption>Ruínas do Grande Farol</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Lightbox: janela modal de imagem ampliada (controlada pelo script.js) -->
+      <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-legenda">
+        <div class="lightbox-topo">
+          <p class="lightbox-contador" id="lightbox-contador" aria-live="polite">1 / 6</p>
+          <button class="lightbox-fechar" id="lightbox-fechar" type="button" aria-label="Fechar imagem">&times;</button>
+        </div>
+        <figure class="lightbox-figura">
+          <div class="lightbox-palco" id="lightbox-palco">
+            <img class="lightbox-img" id="lightbox-img" src="data:," alt="">
+            <button class="lightbox-nav lightbox-anterior" id="lightbox-anterior" type="button" aria-label="Imagem anterior">&#8249;</button>
+            <button class="lightbox-nav lightbox-proximo" id="lightbox-proximo" type="button" aria-label="Próxima imagem">&#8250;</button>
+          </div>
+          <figcaption class="lightbox-legenda" id="lightbox-legenda"></figcaption>
+        </figure>
+      </dialog>
+    </section>
+
+    <!-- ===================================================
+         7. NOTÍCIAS
+         Três cards de atualizações recentes, com data,
+         título, resumo e link "Leia mais".
+         =================================================== -->
+    <section class="section" id="noticias" aria-labelledby="noticias-titulo">
+      <div class="container">
+        <h2 id="noticias-titulo" class="section-title">Notícias</h2>
+
+        <div class="cards-grid noticias-grid">
+          <article class="card noticia-card">
+            <div class="card-body">
+              <p class="noticia-meta"><span class="noticia-categoria">Atualização</span> • <time datetime="2026-09-24">24 set 2026</time></p>
+              <h3 class="card-title">Beta fechado ganha a região Desertos de Vidro</h3>
+              <p>Jogadores do beta já podem explorar a nova região, com tempestades dinâmicas e três novos tipos de Sombra.</p>
+              <a href="#mapa" class="card-link">Leia mais <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="card noticia-card">
+            <div class="card-body">
+              <p class="noticia-meta"><span class="noticia-categoria">Personagem</span> • <time datetime="2026-09-10">10 set 2026</time></p>
+              <h3 class="card-title">Conheça Solá, a nova Portadora de Ecos</h3>
+              <p>A musicista curandeira chega com uma habilidade de suporte que muda o jeito de jogar no cooperativo.</p>
+              <a href="#personagens" class="card-link">Leia mais <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="card noticia-card">
+            <div class="card-body">
+              <p class="noticia-meta"><span class="noticia-categoria">Lançamento</span> • <time datetime="2026-08-28">28 ago 2026</time></p>
+              <h3 class="card-title">Data de lançamento confirmada: 18 de março de 2027</h3>
+              <p>Ecos de Aurora chega a consoles, PC e celulares no mesmo dia, com progresso compartilhado entre plataformas.</p>
+              <a href="#sobre" class="card-link">Leia mais <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         8. CONTATO / NEWSLETTER
+         Formulário com nome, e-mail e mensagem, além da
+         opção de assinar a newsletter. "novalidate" desliga
+         os balões nativos do navegador: a validação é feita
+         pelo script.js, com mensagens abaixo de cada campo.
+         =================================================== -->
+    <section class="section section-alt" id="contato" aria-labelledby="contato-titulo">
+      <div class="container contato-container">
+        <h2 id="contato-titulo" class="section-title">Contato e Newsletter</h2>
+        <p class="section-intro">Quer acesso antecipado, novidades ou mandar uma mensagem para a equipe? Fale com a gente.</p>
+
+        <form class="contato-form" id="contato-form" novalidate>
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" required minlength="2" placeholder="Como devemos te chamar?" aria-describedby="erro-nome">
+            <p class="form-erro" id="erro-nome" aria-live="polite"></p>
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" required placeholder="seuemail@exemplo.com" aria-describedby="erro-email">
+            <p class="form-erro" id="erro-email" aria-live="polite"></p>
+          </div>
+
+          <div class="form-group">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="5" required minlength="10" placeholder="Escreva sua mensagem..." aria-describedby="erro-mensagem"></textarea>
+            <p class="form-erro" id="erro-mensagem" aria-live="polite"></p>
+          </div>
+
+          <div class="form-group form-check">
+            <input type="checkbox" id="newsletter" name="newsletter" checked>
+            <label for="newsletter">Quero receber a newsletter com novidades e convites para testes</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" id="btn-enviar">Enviar</button>
+          <p class="form-sucesso" id="form-sucesso" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================
+       9. RODAPÉ
+       Redes sociais, link de retorno e direitos reservados.
+       O ano é atualizado automaticamente pelo script.js.
+       =================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="logo logo-footer"><span class="logo-ecos">Ecos</span> <span class="logo-de">de</span> <span class="logo-aurora">Aurora</span></p>
+
+      <nav aria-label="Redes sociais">
+        <ul class="social-list">
+          <li><a href="#" class="social-link" aria-label="Instagram do Ecos de Aurora">Instagram</a></li>
+          <li><a href="#" class="social-link" aria-label="TikTok do Ecos de Aurora">TikTok</a></li>
+          <li><a href="#" class="social-link" aria-label="YouTube do Ecos de Aurora">YouTube</a></li>
+          <li><a href="#" class="social-link" aria-label="Discord do Ecos de Aurora">Discord</a></li>
+          <li><a href="#" class="social-link" aria-label="X (Twitter) do Ecos de Aurora">X</a></li>
+        </ul>
+      </nav>
+
+      <p class="footer-copy">&copy; <span id="ano-atual">2026</span> Ecos de Aurora. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Botão flutuante "Voltar ao topo": aparece após rolar a página -->
+  <button class="btn-topo" id="btn-topo" type="button" aria-label="Voltar ao topo" title="Voltar ao topo">
+    <svg class="icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
